@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "769443768453",
+    "project_id": "savio-150a4",
+    "storage_bucket": "savio-150a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769443768453:android:a14791004500dd144661ec",
+        "android_client_info": {
+          "package_name": "com.example.exp_man"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769443768453-f24khgnddir5nksbra08u262fe1koka0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exp_man",
+            "certificate_hash": "5d70eef63e92245bf4c24fa050d5167bb6938faf"
+          }
+        },
+        {
+          "client_id": "769443768453-sfcdiqvtaopkmri5v8d1gonni7v1f93d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYY3hPsDRtGf-Z0myN1uF_vA5iTJkUQsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769443768453-7uhgce7mnfur8vq72158iskj2rj58288.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
