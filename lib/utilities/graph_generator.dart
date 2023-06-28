@@ -67,8 +67,9 @@ class _GraphGeneratorState extends State<GraphGenerator> {
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 0),
         child: SfCartesianChart(
           primaryXAxis: DateTimeAxis(),
+          isTransposed: true,
           series: <ChartSeries>[
-            LineSeries<_ChartData, DateTime>(
+            BarSeries<_ChartData, DateTime>(
               isVisibleInLegend: true,
               color: Color.fromARGB(255, 5, 118, 138),
               dataSource: chartData,
