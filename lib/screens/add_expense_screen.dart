@@ -48,6 +48,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
+                textCapitalization: TextCapitalization.sentences,
                 maxLength: 50,
                 controller: _titleController,
                 decoration: const InputDecoration(
@@ -78,6 +79,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   const Spacer(),
                   Expanded(
                     child: TextField(
+                      textCapitalization: TextCapitalization.words,
                       keyboardType: TextInputType.number,
                       controller: _amountController,
                       decoration: const InputDecoration(
@@ -92,12 +94,22 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(_selectedDate == null
-                      ? "No Date Selected"
-                      : formatter.format(_selectedDate!)),
+                  Text(
+                      _selectedDate == null
+                          ? "No Date Selected"
+                          : formatter.format(_selectedDate!),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(fontWeight: FontWeight.w400)),
                   IconButton(
-                      onPressed: _presentDatePicker,
-                      icon: const Icon(Icons.calendar_month)),
+                    onPressed: _presentDatePicker,
+                    icon: const Icon(
+                      Icons.calendar_month,
+                      color: Color.fromARGB(255, 114, 122, 226),
+                    ),
+                    splashRadius: 20,
+                  ),
                   const Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

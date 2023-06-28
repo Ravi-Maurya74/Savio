@@ -48,38 +48,61 @@ class _BlogScreenState extends State<BlogScreen> {
               child: Column(
                 children: [
                   Container(
-                    margin: const EdgeInsets.all(16),
-                    padding: EdgeInsets.all(16),
+                    margin: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                        color: Color.fromRGBO(37, 42, 52, 1),
+                        color: const Color.fromRGBO(37, 42, 52, 1),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(widget.data['title'],
+                        ListTile(
+                          visualDensity:
+                              const VisualDensity(horizontal: -4, vertical: -4),
+                          contentPadding: EdgeInsets.zero,
+                          leading: const Icon(
+                            Icons.account_circle,
+                            size: 30,
+                          ),
+                          title: Text(
+                            "${widget.data['student']}",
                             style: Theme.of(context)
                                 .textTheme
+                                .titleMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          trailing: Text(outputDate,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14)),
+                        ),
+                        const Divider(
+                          thickness: 0.9,
+                        ),
+                        Text(widget.data['title'],
+                            style: Theme.of(context) // 1
+                                .textTheme
                                 .headlineMedium!
-                                .copyWith(fontWeight: FontWeight.bold)),
-                        ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: const Icon(
-                              Icons.account_circle,
-                              size: 30,
-                            ),
-                            title: Text("${widget.data['student']}",
-                                style: Theme.of(context).textTheme.titleLarge),
-                            trailing: Text(outputDate,
-                                style:
-                                    Theme.of(context).textTheme.titleMedium)),
+                                .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 23,
+                                    color: Colors.white70)),
+                        const SizedBox(height: 10),
                         if ((widget.data['image_url'] as String).isNotEmpty)
                           Image(
                             image: NetworkImage(widget.data['image_url']),
                             fit: BoxFit.cover,
                           ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
                         Text(
                           '${widget.data['content']}',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontSize: 16),
                         ),
                       ],
                     ),
@@ -87,20 +110,20 @@ class _BlogScreenState extends State<BlogScreen> {
                   const SizedBox(height: 10),
                   Container(
                     margin: const EdgeInsets.all(16),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                        color: Color.fromRGBO(37, 42, 52, 1),
+                        color: const Color.fromRGBO(37, 42, 52, 1),
                         borderRadius: BorderRadius.circular(20)),
                     child: ListView.builder(
                       shrinkWrap: true,
                       primary: false,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         bool tap = false;
 
                         return ConstrainedBox(
-                          constraints:
-                              BoxConstraints(maxHeight: 400, minHeight: 100),
+                          constraints: const BoxConstraints(
+                              maxHeight: 400, minHeight: 100),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +133,7 @@ class _BlogScreenState extends State<BlogScreen> {
                                   children: [
                                     const Icon(Icons.person),
                                     Text('${comments[index]['student']}'),
-                                    Spacer(),
+                                    const Spacer(),
                                     Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -140,7 +163,7 @@ class _BlogScreenState extends State<BlogScreen> {
                                 '${comments[index]['comment']}',
                                 textAlign: TextAlign.left,
                               ),
-                              Divider(
+                              const Divider(
                                 thickness: 2,
                                 color: Colors.black45,
                               ),

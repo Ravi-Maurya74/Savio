@@ -7,6 +7,9 @@ class WishlistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
+        SizedBox(
+          height: 10,
+        ),
         Wishlist_Item(
           url:
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt4WR0XQSRCzTVmmEMykTz3jMrON6meu8z1Q&usqp=CAU",
@@ -24,7 +27,7 @@ class WishlistScreen extends StatelessWidget {
               "https://www.apple.com/v/apple-watch-series-8/c/images/meta/gps-lte__gi7uzrvkt5e2_og.png",
           title: "Watch Series 8",
           price: 75000,
-        )
+        ),
       ],
     );
   }
@@ -39,14 +42,16 @@ class Wishlist_Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(20.0),
+        padding:
+            const EdgeInsets.only(left: 15, top: 10, right: 15, bottom: 10),
+        width: double.infinity,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 100.0,
-              width: 120.0,
+              width: 140.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
                 image: DecorationImage(
@@ -54,6 +59,9 @@ class Wishlist_Item extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
+            ),
+            const SizedBox(
+              width: 40,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,25 +73,23 @@ class Wishlist_Item extends StatelessWidget {
                     // fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 10.0),
-                Container(
-                  height: 1,
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width *
-                      0.40, // 75% of the screen width
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "₹ $price",
-                    style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
-                      fontWeight: FontWeight.bold,
-                    ),
+
+                const SizedBox(height: 3.0),
+                // const Divider(
+                //   thickness: 0.9,
+                //   indent: 5,
+                //   endIndent: 10,
+                // ),
+                Text(
+                  "₹ $price",
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
-            )
+            ),
+            const Spacer(),
           ],
         ));
   }

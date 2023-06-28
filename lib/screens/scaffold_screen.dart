@@ -83,7 +83,7 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.favorite_rounded),
-                  label: 'Favorites',
+                  label: 'Wishlist',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person_rounded),
