@@ -39,7 +39,7 @@ class _GraphGeneratorState extends State<GraphGenerator> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 8),
+      margin: const EdgeInsets.only(left: 5, right: 5, bottom: 0, top: 1),
       padding: const EdgeInsets.only(top: 6, right: 4, left: 2),
       width: double.infinity,
       height: size.width * 0.61,
@@ -71,7 +71,7 @@ class _GraphGeneratorState extends State<GraphGenerator> {
           series: <ChartSeries>[
             BarSeries<_ChartData, DateTime>(
               isVisibleInLegend: true,
-              color: Color.fromARGB(255, 5, 118, 138),
+              color: const Color.fromARGB(255, 1, 106, 124),
               dataSource: chartData,
               xValueMapper: (data, _) => data.date,
               yValueMapper: (data, _) => data.expense,

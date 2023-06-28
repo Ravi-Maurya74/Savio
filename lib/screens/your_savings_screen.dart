@@ -3,7 +3,6 @@ import 'package:exp_man/widgets/custom_appbar.dart';
 import 'package:exp_man/providers/student.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class SavingsScreen extends StatelessWidget {
   const SavingsScreen({super.key});
@@ -37,7 +36,7 @@ class SavingsScreen extends StatelessWidget {
             'Your monthly saving',
             style: Theme.of(context).textTheme.titleSmall,
           ),
-          Container(
+          SizedBox(
             height: 400,
             width: 400,
             child: student.savings < 0

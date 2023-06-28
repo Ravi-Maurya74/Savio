@@ -22,7 +22,7 @@ class BlogCard extends StatelessWidget {
       child: Card(
         elevation: 5,
         clipBehavior: Clip.hardEdge,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
         color: Theme.of(context).cardTheme.color,
         surfaceTintColor: Colors.white,
         child: Column(
@@ -39,35 +39,40 @@ class BlogCard extends StatelessWidget {
                   ),
                   child: Image.network(image, fit: BoxFit.fill)),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 4),
                   Text(title,
-                      style: Theme.of(context)
+                      style: Theme.of(context) // 1
                           .textTheme
                           .headlineMedium!
                           .copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 23,
                               color: Colors.white70)),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 2),
                   Text(
                     desc.length > 100
                         ? '${desc.substring(0, 100)}...'
                         : '$desc',
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyLarge, //2
                   ),
-                  const SizedBox(height: 6),
+                  const Divider(
+                    thickness: 0.9,
+                  ),
                   ListTile(
+                    visualDensity:
+                        const VisualDensity(horizontal: -4, vertical: -4),
                     contentPadding: EdgeInsets.zero,
                     leading: const Icon(
                       Icons.account_circle,
                       size: 35,
                     ),
                     title: Text(author,
-                        style: Theme.of(context)
+                        style: Theme.of(context) //3
                             .textTheme
                             .titleMedium!
                             .copyWith(fontWeight: FontWeight.bold)),
@@ -84,7 +89,7 @@ class BlogCard extends StatelessWidget {
                   )
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
