@@ -15,23 +15,8 @@ class ScaffoldScreen extends StatefulWidget {
 class _ScaffoldScreenState extends State<ScaffoldScreen> {
   int selectedIndex = 0;
 
-  late List<Widget?> navigationPages;
-
   @override
   void initState() {
-    navigationPages = [
-      const HomeScreen(),
-      const CommunityScreen(),
-      AddExpenseScreen(
-        onNewExpenseSave: () {
-          setState(() {
-            selectedIndex = 0;
-          });
-        },
-      ),
-      const WishlistScreen(),
-      const UserProfile()
-    ];
     super.initState();
   }
 
@@ -98,7 +83,22 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
             ),
           ),
         ),
-        body: navigationPages[selectedIndex],
+        body: IndexedStack(
+          index: selectedIndex,
+          children: [
+            const HomeScreen(),
+            const CommunityScreen(),
+            AddExpenseScreen(
+              onNewExpenseSave: () {
+                setState(() {
+                  selectedIndex = 0;
+                });
+              },
+            ),
+            const WishlistScreen(),
+            const UserProfile()
+          ],
+        ),
       ),
     );
   }

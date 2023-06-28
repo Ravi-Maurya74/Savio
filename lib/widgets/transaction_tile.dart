@@ -55,10 +55,9 @@ class _TransactionTileBuilderState extends State<TransactionTileBuilder> {
                         padding: const EdgeInsets.all(0),
                         itemBuilder: ((context) => [
                               const PopupMenuItem(
-                                padding: EdgeInsets.all(0),
                                 height: 30,
                                 value: 0,
-                                child: Text('    Modify'),
+                                child: Text('Modify'),
                               ),
                               const PopupMenuItem(
                                 height: 30,
@@ -85,6 +84,7 @@ class _TransactionTileBuilderState extends State<TransactionTileBuilder> {
                                       if (value == null || value.isEmpty) {
                                         return "This field is required";
                                       }
+                                      return null;
                                     },
                                   ),
                                   DialogTextField(
