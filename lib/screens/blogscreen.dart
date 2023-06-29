@@ -46,6 +46,7 @@ class _BlogScreenState extends State<BlogScreen> {
             child: ConstrainedBox(
               constraints: const BoxConstraints.tightForFinite(),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     margin: const EdgeInsets.all(10),
@@ -75,7 +76,7 @@ class _BlogScreenState extends State<BlogScreen> {
                           trailing: Text(outputDate,
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleMedium!
+                                  .titleLarge!
                                   .copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 14)),
@@ -109,31 +110,77 @@ class _BlogScreenState extends State<BlogScreen> {
                       ],
                     ),
                   ),
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  //   child: Text(
+                  //     'Comments :',
+                  //     style: Theme.of(context).textTheme.headlineSmall,
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: ListView.builder(
                       shrinkWrap: true,
                       primary: false,
                       physics: const NeverScrollableScrollPhysics(),
+                      itemCount: comments.length,
                       itemBuilder: (context, index) {
                         bool tap = false;
-
-                        return ConstrainedBox(
-                          constraints: const BoxConstraints(
-                              maxHeight: 400, minHeight: 100),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Expanded(
-                                child: Row(
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.person,
+                                  size: 20,
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  '${comments[index]['student']}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(fontWeight: FontWeight.w600),
+                                ),
+                                const Spacer(),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            Builder(builder: (context) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(28, 0, 12, 0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Icon(Icons.person),
-                                    Text('${comments[index]['student']}'),
-                                    const Spacer(),
-                                    Column(
+                                    Text(
+                                      '${comments[index]['comment']}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              color: const Color.fromARGB(
+                                                  255, 217, 215, 215)),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
+                                        const Spacer(),
+                                        Text('${comments[index]['upvotes']}'),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
                                         GestureDetector(
                                           onTap: () {
                                             if (tap == false) {
@@ -147,28 +194,25 @@ class _BlogScreenState extends State<BlogScreen> {
                                             tap
                                                 ? Icons.thumb_up
                                                 : Icons.thumb_up_alt_outlined,
-                                            size: 10.0,
+                                            size: 15.0,
                                           ),
                                         ),
-                                        Text('${comments[index]['upvotes']}')
+                                        const SizedBox(
+                                          width: 8,
+                                        )
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
-                              ),
-                              Text(
-                                '${comments[index]['comment']}',
-                                textAlign: TextAlign.left,
-                              ),
-                              const Divider(
-                                thickness: 2,
-                                color: Colors.black45,
-                              ),
-                            ],
-                          ),
+                              );
+                            }),
+                            const Divider(
+                              thickness: 0.9,
+                              height: 30,
+                            ),
+                          ],
                         );
                       },
-                      itemCount: comments.length,
                     ),
                   )
                 ],

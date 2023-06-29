@@ -4,6 +4,7 @@ import 'package:exp_man/screens/new_screen.dart';
 import 'package:exp_man/screens/user_profile_screen.dart';
 import 'package:exp_man/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ScaffoldScreen extends StatefulWidget {
   const ScaffoldScreen({super.key});
@@ -26,7 +27,9 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              SystemNavigator.pop();
+            },
             icon: const Icon(Icons.arrow_back),
           ),
           title: Text(
