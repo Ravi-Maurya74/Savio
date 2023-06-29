@@ -14,8 +14,8 @@ class CircularIconCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.only(left: 5, right: 5, bottom: 8, top: 8),
-      width: size.width * 0.15,
-      height: size.width * 0.15,
+      width: size.width * 0.13,
+      height: size.width * 0.13,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(

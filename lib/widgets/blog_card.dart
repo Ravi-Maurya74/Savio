@@ -22,7 +22,7 @@ class BlogCard extends StatelessWidget {
       child: Card(
         elevation: 5,
         clipBehavior: Clip.hardEdge,
-        margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+        margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         color: Theme.of(context).cardTheme.color,
         surfaceTintColor: Colors.white,
         child: Column(
@@ -31,7 +31,7 @@ class BlogCard extends StatelessWidget {
           children: [
             if (image.isNotEmpty)
               Container(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  // padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(15),
@@ -40,11 +40,10 @@ class BlogCard extends StatelessWidget {
                   child: Image.network(image, fit: BoxFit.fill)),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+                  const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 4),
                   Text(title,
                       style: Theme.of(context) // 1
                           .textTheme
@@ -55,9 +54,7 @@ class BlogCard extends StatelessWidget {
                               color: Colors.white70)),
                   const SizedBox(height: 2),
                   Text(
-                    desc.length > 100
-                        ? '${desc.substring(0, 100)}...'
-                        : '$desc',
+                    desc.length > 100 ? '${desc.substring(0, 100)}...' : desc,
                     style: Theme.of(context).textTheme.bodyLarge, //2
                   ),
                   const Divider(

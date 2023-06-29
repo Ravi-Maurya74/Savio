@@ -93,7 +93,7 @@ class _AddCommunityPostScreenState extends State<AddCommunityPostScreen> {
                         ),
                         const SizedBox(width: 26),
                         Switch(
-                          activeColor: Color(0xFFd988a1),
+                          activeColor: const Color(0xFFd988a1),
                           value: initialValue,
                           onChanged: (value) {
                             setState(() {

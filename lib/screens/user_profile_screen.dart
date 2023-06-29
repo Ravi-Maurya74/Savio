@@ -14,14 +14,9 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  // final _titleController = TextEditingController();
-  // // final _emailController = TextEditingController();
-  // final _cityController = TextEditingController();
-  // final _totalBudgetController = TextEditingController();
-  // // final _categoryBudgetController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    debugPrint('profile rebuild');
     Student student = Provider.of<Student>(context);
     return SingleChildScrollView(
       child: Column(

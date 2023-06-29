@@ -20,9 +20,6 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen> {
   bool isLoading = true;
   List<dynamic> data = [];
-  String Selectedvalue = 'Lucknow';
-
-  List<String> a = ['Lucknow', 'Agartala', 'Bhubaneshwar'];
 
   @override
   void initState() {
@@ -42,6 +39,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('community rebuild');
     return Scaffold(
       floatingActionButton: OpenContainer(
         transitionDuration: const Duration(milliseconds: 500),

@@ -1,40 +1,66 @@
+import 'package:exp_man/screens/add_wishlist_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animations/animations.dart';
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        SizedBox(
-          height: 10,
+    debugPrint('wishlist rebuild');
+    return Scaffold(
+      floatingActionButton: OpenContainer(
+        transitionDuration: const Duration(milliseconds: 500),
+        transitionType: ContainerTransitionType.fadeThrough,
+        closedShape: const CircleBorder(),
+        closedColor: const Color(0xFF50559a),
+        openColor: Theme.of(context)
+            .scaffoldBackgroundColor, //const Color(0xFF16161e),
+        middleColor: const Color(0xFFd988a1),
+        closedBuilder: (context, action) => Container(
+          margin: const EdgeInsets.all(16),
+          decoration: const BoxDecoration(
+            color: Color(0xFF50559a),
+          ),
+          child: const Icon(
+            Icons.add,
+            size: 25,
+            color: Color.fromARGB(255, 216, 216, 216),
+          ),
         ),
-        Wishlist_Item(
-          url:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt4WR0XQSRCzTVmmEMykTz3jMrON6meu8z1Q&usqp=CAU",
-          title: "MacBook Air Pro",
-          price: 116000,
-        ),
-        Wishlist_Item(
-          url:
-              "https://cdn.shopify.com/s/files/1/0586/3270/0077/files/PC3_2160x.jpg?v=1680179072",
-          title: "Nothing Phone 1",
-          price: 50000,
-        ),
-        Wishlist_Item(
-          url:
-              "https://www.apple.com/v/apple-watch-series-8/c/images/meta/gps-lte__gi7uzrvkt5e2_og.png",
-          title: "Watch Series 8",
-          price: 75000,
-        ),
-      ],
+        openBuilder: (context, action) => const AddWishlistScreen(),
+      ),
+      body: const Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          WishlistItem(
+            url:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt4WR0XQSRCzTVmmEMykTz3jMrON6meu8z1Q&usqp=CAU",
+            title: "MacBook Air Pro",
+            price: 116000,
+          ),
+          WishlistItem(
+            url:
+                "https://cdn.shopify.com/s/files/1/0586/3270/0077/files/PC3_2160x.jpg?v=1680179072",
+            title: "Nothing Phone 1",
+            price: 50000,
+          ),
+          WishlistItem(
+            url:
+                "https://www.apple.com/v/apple-watch-series-8/c/images/meta/gps-lte__gi7uzrvkt5e2_og.png",
+            title: "Watch Series 8",
+            price: 75000,
+          ),
+        ],
+      ),
     );
   }
 }
 
-class Wishlist_Item extends StatelessWidget {
-  const Wishlist_Item({this.url, this.title, this.price});
+class WishlistItem extends StatelessWidget {
+  const WishlistItem({this.url, this.title, this.price});
 
   final String? url, title;
   final int? price;
