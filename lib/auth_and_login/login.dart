@@ -38,9 +38,9 @@ class LoginPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.all(36.0),
+                      margin: const EdgeInsets.all(36.0),
                       height: 600.0,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/images/2.png'),
                           fit: BoxFit.contain,

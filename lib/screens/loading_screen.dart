@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:exp_man/screens/home_screen.dart';
 import 'package:exp_man/auth_and_login/login.dart';
 import 'package:provider/provider.dart';
 import 'package:exp_man/auth_and_login/google_signin.dart';
@@ -27,7 +26,7 @@ class LoadingScreen extends StatelessWidget {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => ScaffoldScreen(),
+              builder: (context) => const ScaffoldScreen(),
             ));
         // return Future.value(true);
       } else {

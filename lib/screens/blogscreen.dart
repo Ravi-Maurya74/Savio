@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class BlogScreen extends StatefulWidget {
-  BlogScreen({required this.data});
+  const BlogScreen({super.key, required this.data});
   final Map<String, dynamic> data;
 
   @override
@@ -49,7 +49,8 @@ class _BlogScreenState extends State<BlogScreen> {
                 children: [
                   Container(
                     margin: const EdgeInsets.all(10),
-                    padding: const EdgeInsets.all(14),
+                    padding: const EdgeInsets.only(
+                        top: 10, bottom: 14, left: 14, right: 14),
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(37, 42, 52, 1),
                         borderRadius: BorderRadius.circular(20)),
@@ -90,30 +91,26 @@ class _BlogScreenState extends State<BlogScreen> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 23,
                                     color: Colors.white70)),
-                        const SizedBox(height: 10),
                         if ((widget.data['image_url'] as String).isNotEmpty)
-                          Image(
-                            image: NetworkImage(widget.data['image_url']),
-                            fit: BoxFit.cover,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            child: Image(
+                              image: NetworkImage(widget.data['image_url']),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        const SizedBox(height: 10),
                         Text(
                           '${widget.data['content']}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
-                              .copyWith(fontSize: 16),
+                              .copyWith(fontSize: 15),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Container(
-                    margin: const EdgeInsets.all(16),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        color: const Color.fromRGBO(37, 42, 52, 1),
-                        borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: ListView.builder(
                       shrinkWrap: true,
                       primary: false,

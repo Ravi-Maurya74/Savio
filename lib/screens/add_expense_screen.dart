@@ -2,6 +2,7 @@ import 'package:exp_man/providers/student.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:exp_man/widgets/custom_appbar.dart';
 
 enum Category { food, travel, work, leisure }
 
@@ -9,9 +10,7 @@ final formatter =
     DateFormat.yMd(); //DateFormat("yyyy-MM-dd").format(DateTime.now())
 
 class AddExpenseScreen extends StatefulWidget {
-  AddExpenseScreen({super.key, required this.onNewExpenseSave});
-
-  void Function()? onNewExpenseSave;
+  AddExpenseScreen({super.key});
 
   @override
   State<AddExpenseScreen> createState() => _AddExpenseScreenState();
@@ -47,6 +46,12 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const CustomAppbar(
+                title: 'Add Expense',
+              ),
+              const SizedBox(
+                height: 25,
+              ),
               TextField(
                 textCapitalization: TextCapitalization.sentences,
                 maxLength: 50,
@@ -90,7 +95,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -141,7 +146,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                           ),
                         );
                       } else {
-                        widget.onNewExpenseSave!();
+                        Navigator.pop(context);
                       }
                     },
                     child: const Text('Save Expenses'),
