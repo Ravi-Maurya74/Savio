@@ -64,14 +64,15 @@ class _GraphGeneratorState extends State<GraphGenerator> {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 0),
+        padding: const EdgeInsets.fromLTRB(0, 4, 2, 4),
         child: SfCartesianChart(
           primaryXAxis: DateTimeAxis(),
           isTransposed: true,
           series: <ChartSeries>[
             BarSeries<_ChartData, DateTime>(
               isVisibleInLegend: true,
-              color: const Color.fromARGB(255, 1, 106, 124),
+              color:
+                  const Color.fromARGB(255, 110, 152, 174).withOpacity(0.8), //
               dataSource: chartData,
               xValueMapper: (data, _) => data.date,
               yValueMapper: (data, _) => data.expense,
