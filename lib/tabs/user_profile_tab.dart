@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:exp_man/providers/student.dart';
 import 'package:provider/provider.dart';
 
-class UserProfile extends StatefulWidget {
-  const UserProfile({super.key});
+class UserProfileTab extends StatefulWidget {
+  const UserProfileTab({super.key});
 
   @override
-  State<UserProfile> createState() => _UserProfileState();
+  State<UserProfileTab> createState() => _UserProfileTabState();
 }
 
-class _UserProfileState extends State<UserProfile> {
+class _UserProfileTabState extends State<UserProfileTab> {
   @override
   Widget build(BuildContext context) {
     debugPrint('profile rebuild');

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:exp_man/auth_and_login/google_signin.dart';
 import 'package:exp_man/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -68,10 +69,8 @@ class RegisterPage extends StatelessWidget {
                       Student student =
                           Provider.of<Student>(context, listen: false);
                       student.update(data: newUserDetail);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const ScaffoldScreen())));
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, ScaffoldScreen.routename, (route) => false);
                     } else {
                       //use snackbar to tell that email entered already exists
                     }
@@ -88,8 +87,10 @@ class RegisterPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () async {
-                      Navigator.pushReplacementNamed(
-                          context, LoginPage.routename);
+                      Provider.of<GoogleSignInProvider>(context, listen: false)
+                          .googleLogout();
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, LoginPage.routename, (route) => false);
                     },
                     child: Text(
                       'Sign In',

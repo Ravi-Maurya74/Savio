@@ -2,8 +2,8 @@ import 'package:exp_man/screens/add_wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
-class WishlistScreen extends StatelessWidget {
-  const WishlistScreen({super.key});
+class WishlistTab extends StatelessWidget {
+  const WishlistTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class WishlistScreen extends StatelessWidget {
 }
 
 class WishlistItem extends StatelessWidget {
-  const WishlistItem({this.url, this.title, this.price});
+  const WishlistItem({super.key,this.url, this.title, this.price});
 
   final String? url, title;
   final int? price;

@@ -1,12 +1,13 @@
-import 'package:exp_man/screens/community_screen.dart';
-import 'package:exp_man/screens/home_screen.dart';
-import 'package:exp_man/screens/new_screen.dart';
-import 'package:exp_man/screens/user_profile_screen.dart';
-import 'package:exp_man/screens/wishlist_screen.dart';
+import 'package:exp_man/tabs/community_tab.dart';
+import 'package:exp_man/tabs/home_tab.dart';
+import 'package:exp_man/tabs/new_screen.dart';
+import 'package:exp_man/tabs/user_profile_tab.dart';
+import 'package:exp_man/tabs/wishlist_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ScaffoldScreen extends StatefulWidget {
+  static const routename = '/scaffold_screen';
   const ScaffoldScreen({super.key});
 
   @override
@@ -89,11 +90,11 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
         body: IndexedStack(
           index: selectedIndex,
           children: const [
-            HomeScreen(),
-            CommunityScreen(),
+            HomeTab(),
+            CommunityTab(),
             NewNavBarTab(),
-            WishlistScreen(),
-            UserProfile()
+            WishlistTab(),
+            UserProfileTab(),
           ],
         ),
       ),

@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:exp_man/screens/add_expense_screen.dart';
 import 'package:animations/animations.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeTab extends StatelessWidget {
+  const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {

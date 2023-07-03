@@ -23,29 +23,22 @@ class LoadingScreen extends StatelessWidget {
       if (response.statusCode == 200) {
         dynamic data = jsonDecode(response.body);
         Provider.of<Student>(context, listen: false).update(data: data);
-        Navigator.pushReplacement(
+        Navigator.pushReplacementNamed(
             context,
-            MaterialPageRoute(
-              builder: (context) => const ScaffoldScreen(),
-            ));
+            ScaffoldScreen.routename);
         // return Future.value(true);
       } else {
         Provider.of<GoogleSignInProvider>(context, listen: false)
             .googleLogout();
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LoginPage(),
-            ));
+        Navigator.pushReplacementNamed(context, LoginPage.routename);
       }
       // student = Provider.of<Student>
       // return Future.value(false);
     } else {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LoginPage(),
-          ));
+      Navigator.pushReplacementNamed(
+        context,
+        LoginPage.routename,
+      );
     }
   }
 

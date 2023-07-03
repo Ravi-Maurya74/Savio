@@ -1,24 +1,37 @@
+import 'package:exp_man/providers/community_post.dart';
+import 'package:exp_man/screens/blogscreen.dart';
 import 'package:flutter/material.dart';
 
-class BlogCard extends StatelessWidget {
-  const BlogCard({
-    super.key,
-    required this.title,
-    required this.desc,
-    required this.author,
-    required this.press,
-    required this.upvotes,
-    this.image = '',
-  });
-  //required this.slug});
+class BlogCard extends StatefulWidget {
+  const BlogCard({super.key, required this.receivedData});
 
-  final String image, title, desc, author, upvotes;
-  final Function() press;
+  final dynamic receivedData;
+
+  @override
+  State<BlogCard> createState() => _BlogCardState();
+}
+
+class _BlogCardState extends State<BlogCard> {
+  late CommunityPost communityPost;
+
+  @override
+  void initState() {
+    super.initState();
+    communityPost = CommunityPost.fromJson(widget.receivedData);
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap: () async {
+        var result = await Navigator.pushNamed(context, BlogScreen.routeName,
+            arguments: communityPost);
+        if (result != null) {
+          setState(() {
+            communityPost = (result as CommunityPost);
+          });
+        }
+      },
       child: Card(
         elevation: 5,
         clipBehavior: Clip.hardEdge,
@@ -29,7 +42,7 @@ class BlogCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (image.isNotEmpty)
+            if (communityPost.image_url.isNotEmpty)
               Container(
                   // padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   decoration: const BoxDecoration(
@@ -37,14 +50,15 @@ class BlogCard extends StatelessWidget {
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
                   ),
-                  child: Image.network(image, fit: BoxFit.fill)),
+                  child:
+                      Image.network(communityPost.image_url, fit: BoxFit.fill)),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title,
+                  Text(communityPost.title,
                       style: Theme.of(context) // 1
                           .textTheme
                           .headlineMedium!
@@ -54,7 +68,9 @@ class BlogCard extends StatelessWidget {
                               color: Colors.white70)),
                   const SizedBox(height: 2),
                   Text(
-                    desc.length > 100 ? '${desc.substring(0, 100)}...' : desc,
+                    communityPost.content.length > 100
+                        ? '${communityPost.content.substring(0, 100)}...'
+                        : communityPost.content,
                     style: Theme.of(context).textTheme.bodyLarge, //2
                   ),
                   const Divider(
@@ -68,20 +84,27 @@ class BlogCard extends StatelessWidget {
                       Icons.account_circle,
                       size: 35,
                     ),
-                    title: Text(author,
+                    title: Text(communityPost.student,
                         style: Theme.of(context) //3
                             .textTheme
                             .titleMedium!
                             .copyWith(fontWeight: FontWeight.bold)),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Icon(
-                          Icons.arrow_upward,
-                          size: 20,
-                        ),
-                        Text(upvotes),
-                      ],
+                    trailing: FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.arrow_upward,
+                            size: 20,
+                            color:
+                                communityPost.liked ? Colors.pink : Colors.grey,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(communityPost.upvotes.toString()),
+                        ],
+                      ),
                     ),
                   )
                 ],

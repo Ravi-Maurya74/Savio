@@ -12,10 +12,7 @@ import 'package:http/http.dart';
 
 class LoginPage extends StatelessWidget {
   static const routename = '/login';
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  // final box = GetStorage();
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,21 +70,14 @@ class LoginPage extends StatelessWidget {
                           Provider.of<Student>(context, listen: false)
                               .update(data: userDetail);
                           // print(student.name);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const ScaffoldScreen())));
+                          Navigator.pushReplacementNamed(
+                              context, ScaffoldScreen.routename);
                         } else if (userData.statusCode == 404) {
                           //user not found
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => RegisterPage())));
+                          Navigator.pushReplacementNamed(context, RegisterPage.routeName);
                         }
                       },
                     ),
-
                     SizedBox(
                       height: dimensions.height * 0.08,
                     ),

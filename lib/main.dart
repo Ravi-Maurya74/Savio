@@ -1,3 +1,6 @@
+import 'package:exp_man/providers/community_post.dart';
+import 'package:exp_man/screens/blogscreen.dart';
+import 'package:exp_man/screens/scaffold_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:exp_man/auth_and_login/google_signin.dart';
 import 'package:exp_man/providers/student.dart';
@@ -6,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'auth_and_login/signup.dart';
 import 'auth_and_login/login.dart';
-import 'auth_and_login/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -81,9 +83,23 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             '/': (context) => LoadingScreen(),
-            LoginPage.routename: (context) => LoginPage(),
+            LoginPage.routename: (context) => const LoginPage(),
             RegisterPage.routeName: (context) => RegisterPage(),
-            Home.id: (context) => const Home(),
+            ScaffoldScreen.routename: (context) => const ScaffoldScreen(),
+          },
+          onGenerateRoute: (settings) {
+            if (settings.name == BlogScreen.routeName) {
+              return MaterialPageRoute(
+                builder: (context) {
+                  return ChangeNotifierProvider.value(
+                    value: settings.arguments as CommunityPost,
+                    // create: (context) => settings.arguments as CommunityPost,
+                    child: const BlogScreen(),
+                  );
+                },
+              );
+            }
+            return null;
           },
         ),
       );

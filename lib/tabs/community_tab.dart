@@ -4,20 +4,18 @@ import 'package:exp_man/screens/add_community_post.dart';
 import 'package:exp_man/services/networking.dart';
 import 'package:flutter/material.dart';
 import 'package:exp_man/widgets/blog_card.dart';
-// import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
-import 'blogscreen.dart';
 
-class CommunityScreen extends StatefulWidget {
-  const CommunityScreen({super.key});
+class CommunityTab extends StatefulWidget {
+  const CommunityTab({super.key});
 
   @override
-  State<CommunityScreen> createState() => _CommunityScreenState();
+  State<CommunityTab> createState() => _CommunityTabState();
 }
 
-class _CommunityScreenState extends State<CommunityScreen> {
+class _CommunityTabState extends State<CommunityTab> {
   bool isLoading = true;
   List<dynamic> data = [];
 
@@ -74,18 +72,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
                   data[index]['image_url'] = '';
                 }
                 return BlogCard(
-                  image: data[index]['image_url'],
-                  title: data[index]['title'],
-                  desc: data[index]['content'],
-                  author: data[index]['student'],
-                  upvotes: data[index]['upvotes'].toString(),
-                  press: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BlogScreen(data: data[index]),
-                        ));
-                  },
+                  key: ValueKey(data[index]['id']),
+                  receivedData: data[index],
                 );
               },
               itemCount: data.length,

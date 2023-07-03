@@ -7,7 +7,7 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   // final VoidCallback onTap;
 
-  CustomTextField({
+  const CustomTextField({
     required this.textEditingController,
     required this.label,
     required this.iconData,
@@ -16,11 +16,7 @@ class CustomTextField extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  String? text;
 
-  String getText() {
-    return text!;
-  }
 
   @override
   Widget build(BuildContext context) {
