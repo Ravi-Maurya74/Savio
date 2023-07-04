@@ -51,7 +51,6 @@ class HomeTab extends StatelessWidget {
               ),
               GraphGenerator(
                 id: student.id,
-                key: UniqueKey(),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

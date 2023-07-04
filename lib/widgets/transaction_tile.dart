@@ -122,9 +122,13 @@ class _TransactionTileBuilderState extends State<TransactionTileBuilder> {
                                           "title": result[0],
                                           "amount": result[1]
                                         });
+                                    if (!context.mounted) return;
                                     if (response.statusCode == 200) {
                                       dynamic updatedTransaction =
                                           jsonDecode(response.body);
+                                      Provider.of<Student>(context,
+                                              listen: false)
+                                          .notify();
                                       setState(() {
                                         student.transactions[index]['title'] =
                                             updatedTransaction['title'];

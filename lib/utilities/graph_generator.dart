@@ -20,19 +20,31 @@ class _GraphGeneratorState extends State<GraphGenerator> {
   @override
   void initState() {
     super.initState();
-    initialise();
+    addChartData();
   }
 
-  void initialise() async {
+  Future<List<_ChartData>> getChartData() async {
     Response response =
         await NetworkHelper().getData('student/monthlyExpenses/${widget.id}');
     dynamic data = jsonDecode(response.body);
+    List<_ChartData> newData = [];
     data.forEach((key, value) {
-      chartData.add(_ChartData(DateTime.parse(key), value));
+      newData.add(_ChartData(DateTime.parse(key), value));
     });
+    return newData;
+  }
+
+  void addChartData() async {
+    var newData = await getChartData();
     setState(() {
-      chartData;
+      chartData = newData;
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant GraphGenerator oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    addChartData();
   }
 
   @override

@@ -82,4 +82,8 @@ class Student with ChangeNotifier {
       }
     }
   }
+
+  void notify() {
+    notifyListeners();
+  }
 }
