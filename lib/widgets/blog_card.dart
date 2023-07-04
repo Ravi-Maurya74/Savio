@@ -96,8 +96,9 @@ class _BlogCardState extends State<BlogCard> {
                           Icon(
                             Icons.arrow_upward,
                             size: 20,
-                            color:
-                                communityPost.liked ? Colors.pink : Colors.grey,
+                            color: communityPost.liked
+                                ? const Color(0xFFd988a1)
+                                : Colors.grey,
                           ),
                           const SizedBox(
                             width: 10,

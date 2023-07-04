@@ -1,9 +1,12 @@
 import 'package:exp_man/providers/community_post.dart';
 import 'package:exp_man/providers/student.dart';
+import 'package:exp_man/screens/add_comment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:like_button/like_button.dart';
+import 'package:animations/animations.dart';
+import 'package:exp_man/screens/add_community_post.dart';
 
 class BlogScreen extends StatelessWidget {
   static const routeName = '/blogscreen';
@@ -19,6 +22,27 @@ class BlogScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Blog'),
+        ),
+        floatingActionButton: OpenContainer(
+          transitionDuration: const Duration(milliseconds: 500),
+          transitionType: ContainerTransitionType.fadeThrough,
+          closedShape: const CircleBorder(),
+          closedColor: const Color(0xFF50559a),
+          openColor: Theme.of(context)
+              .scaffoldBackgroundColor, //const Color(0xFF16161e),
+          middleColor: const Color(0xFFd988a1),
+          closedBuilder: (context, action) => Container(
+            margin: const EdgeInsets.all(16),
+            decoration: const BoxDecoration(
+              color: Color(0xFF50559a),
+            ),
+            child: const Icon(
+              Icons.add,
+              size: 25,
+              color: Color.fromARGB(255, 216, 216, 216),
+            ),
+          ),
+          openBuilder: (context, action) => const AddCommentScreen(),
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
@@ -44,7 +68,7 @@ class Comments extends StatelessWidget {
     super.key,
   });
 
-    final List comments = const [
+  final List comments = const [
     {
       "student": "Ravi Maurya",
       "comment":
@@ -176,7 +200,7 @@ class Post extends StatelessWidget {
     var outputDate = DateFormat('dd/MM/yyyy').format(inputDate);
     return Container(
       margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.only(top: 10, bottom: 14, left: 14, right: 14),
+      padding: const EdgeInsets.only(top: 10, bottom: 0, left: 14, right: 14),
       decoration: BoxDecoration(
           color: const Color.fromRGBO(37, 42, 52, 1),
           borderRadius: BorderRadius.circular(20)),
@@ -256,7 +280,7 @@ class Activity extends StatelessWidget {
         LikeButton(
           likeBuilder: (isLiked) => Icon(
             Icons.arrow_upward,
-            color: isLiked ? Colors.pink : Colors.grey,
+            color: isLiked ? const Color(0xFFd988a1) : Colors.grey,
           ),
           likeCount: communityPost.upvotes,
           isLiked: communityPost.liked,
