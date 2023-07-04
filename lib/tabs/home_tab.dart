@@ -37,7 +37,7 @@ class HomeTab extends StatelessWidget {
             color: Color.fromARGB(255, 216, 216, 216),
           ),
         ),
-        openBuilder: (context, action) => AddExpenseScreen(),
+        openBuilder: (context, action) => const AddExpenseScreen(),
       ),
       body: Center(
         child: Padding(

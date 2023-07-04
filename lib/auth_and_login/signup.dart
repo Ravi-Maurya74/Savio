@@ -64,6 +64,7 @@ class RegisterPage extends StatelessWidget {
                   action: () async {
                     Response newUserData = await apiModel.createUser(
                         nameController.text, user.email!, cityController.text);
+                        if (!context.mounted) return;
                     if (newUserData.statusCode >= 200) {
                       dynamic newUserDetail = jsonDecode(newUserData.body);
                       Student student =

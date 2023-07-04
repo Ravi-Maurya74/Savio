@@ -154,6 +154,7 @@ class _AddCommunityPostScreenState extends State<AddCommunityPostScreen> {
                                   "content": _contentController.text,
                                   "city": _cityController.text
                                 });
+                                if (!context.mounted) return;
                             if (response.statusCode == 201) {
                               await showDialog(
                                 context: context,
@@ -171,6 +172,7 @@ class _AddCommunityPostScreenState extends State<AddCommunityPostScreen> {
                                   ],
                                 ),
                               );
+                              if (!context.mounted) return;
                               Navigator.pop(context);
                             }
                           } else {

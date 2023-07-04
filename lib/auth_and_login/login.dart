@@ -62,6 +62,7 @@ class LoginPage extends StatelessWidget {
                         debugPrint(user!.email);
                         Response userData = await NetworkHelper()
                             .getData('student/retrieve/${user.email}');
+                            if (!context.mounted) return;
                         if (userData.statusCode >= 200 &&
                             userData.statusCode < 300) {
                           //user found

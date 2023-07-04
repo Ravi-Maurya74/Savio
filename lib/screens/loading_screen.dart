@@ -20,6 +20,7 @@ class LoadingScreen extends StatelessWidget {
     if (user != null) {
       Response response =
           await NetworkHelper().getData('student/retrieve/${user!.email}');
+          if (!context.mounted) return;
       if (response.statusCode == 200) {
         dynamic data = jsonDecode(response.body);
         Provider.of<Student>(context, listen: false).update(data: data);

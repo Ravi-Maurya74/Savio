@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:like_button/like_button.dart';
 import 'package:animations/animations.dart';
-import 'package:exp_man/screens/add_community_post.dart';
 
 class BlogScreen extends StatelessWidget {
   static const routeName = '/blogscreen';

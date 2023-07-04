@@ -17,7 +17,6 @@ class _AddCommentScreenState extends State<AddCommentScreen> {
 
   final _titleController = TextEditingController();
   final _cityController = TextEditingController();
-  final _urlController = TextEditingController();
   final _contentController = TextEditingController();
   bool initialValue = false;
 
@@ -93,6 +92,7 @@ class _AddCommentScreenState extends State<AddCommentScreen> {
                                   "content": _contentController.text,
                                   "city": _cityController.text
                                 });
+                            if (!context.mounted) return;
                             if (response.statusCode == 201) {
                               await showDialog(
                                 context: context,
@@ -110,6 +110,7 @@ class _AddCommentScreenState extends State<AddCommentScreen> {
                                   ],
                                 ),
                               );
+                              if (!context.mounted) return;
                               Navigator.pop(context);
                             }
                           } else {

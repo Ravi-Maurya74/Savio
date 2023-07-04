@@ -10,7 +10,7 @@ final formatter =
     DateFormat.yMd(); //DateFormat("yyyy-MM-dd").format(DateTime.now())
 
 class AddExpenseScreen extends StatefulWidget {
-  AddExpenseScreen({super.key});
+  const AddExpenseScreen({super.key});
 
   @override
   State<AddExpenseScreen> createState() => _AddExpenseScreenState();
@@ -128,6 +128,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                               amount: double.tryParse(_amountController.text),
                               date: _selectedDate,
                               category: _selectedCategory.index + 1);
+                              if (!context.mounted) return;
                       if (!added) {
                         showDialog(
                           context: context,

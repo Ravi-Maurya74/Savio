@@ -78,7 +78,7 @@ class Student with ChangeNotifier {
         update(data: userDetail);
         return;
       } else {
-        print(response.statusCode);
+        debugPrint(response.statusCode.toString());
       }
     }
   }
