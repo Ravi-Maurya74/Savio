@@ -4,7 +4,7 @@ class CircularIconCard extends StatelessWidget {
   const CircularIconCard(
       {super.key, required this.alertIcon, required this.onPress});
 
-  final IconData alertIcon;
+  final Widget alertIcon;
   final void Function() onPress;
 
   get copyWith => null;
@@ -38,10 +38,7 @@ class CircularIconCard extends StatelessWidget {
       child: InkWell(
         onTap: onPress,
         child: Center(
-          child: Icon(
-            alertIcon,
-            color: Colors.white,
-          ),
+          child: alertIcon,
         ),
       ),
     );
