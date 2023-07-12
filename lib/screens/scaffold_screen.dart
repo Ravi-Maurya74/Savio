@@ -89,10 +89,10 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
         ),
         body: IndexedStack(
           index: selectedIndex,
-          children: const [
+          children: [
             HomeTab(),
             CommunityTab(),
-            NewNavBarTab(),
+            inDepthVisualization(),
             WishlistTab(),
             UserProfileTab(),
           ],

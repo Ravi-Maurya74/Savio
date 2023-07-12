@@ -49,6 +49,7 @@ dependencies:
   json_serializable: ^6.7.1
   build_runner: ^2.4.6
   like_button: ^2.0.5
+  card_swiper: ^3.0.1
 
 flutter_launcher_icons:
   image_path: "assets/images/logo.png"

@@ -81,7 +81,7 @@ class HomeTab extends StatelessWidget {
                     },
                   ),
                   CircularIconCard(
-                    alertIcon: student.savings < 0
+                    alertIcon: context.watch<Student>().savings < 0
                         ? Notificationtile(isCrossed: true)
                         : Notificationtile(isCrossed: false),
                     onPress: () {

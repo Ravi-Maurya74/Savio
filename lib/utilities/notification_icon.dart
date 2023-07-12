@@ -7,6 +7,7 @@ class Notificationtile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: <Widget>[
         Icon(
           Icons.notifications,
