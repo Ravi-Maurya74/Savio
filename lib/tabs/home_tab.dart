@@ -6,6 +6,7 @@ import 'package:exp_man/providers/student.dart';
 import 'package:provider/provider.dart';
 import 'package:exp_man/screens/add_expense_screen.dart';
 import 'package:animations/animations.dart';
+import 'package:exp_man/utilities/notification_icon.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -57,7 +58,10 @@ class HomeTab extends StatelessWidget {
                 children: [
                   elongatedContainer(size, student, context),
                   CircularIconCard(
-                    alertIcon: Icons.credit_score,
+                    alertIcon: Icon(
+                      Icons.credit_score,
+                      color: Colors.white,
+                    ),
                     onPress: () {
                       showDialog(
                         context: context,
@@ -78,8 +82,8 @@ class HomeTab extends StatelessWidget {
                   ),
                   CircularIconCard(
                     alertIcon: student.savings < 0
-                        ? Icons.notifications_active_outlined
-                        : Icons.notifications_outlined,
+                        ? Notificationtile(isCrossed: true)
+                        : Notificationtile(isCrossed: false),
                     onPress: () {
                       student.savings < 0
                           ? showDialog(
