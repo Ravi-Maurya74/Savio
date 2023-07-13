@@ -89,7 +89,7 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
         ),
         body: IndexedStack(
           index: selectedIndex,
-          children: [
+          children: const [
             HomeTab(),
             CommunityTab(),
             inDepthVisualization(),
