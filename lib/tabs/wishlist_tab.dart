@@ -60,17 +60,18 @@ class WishlistTab extends StatelessWidget {
 }
 
 class WishlistItem extends StatelessWidget {
-  const WishlistItem({super.key,this.url, this.title, this.price});
+  const WishlistItem({super.key, this.url, this.title, this.price});
 
   final String? url, title;
   final int? price;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
         padding:
-            const EdgeInsets.only(left: 15, top: 10, right: 15, bottom: 10),
-        width: double.infinity,
+            const EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+        width: size.width,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +88,7 @@ class WishlistItem extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              width: 40,
+              width: 10,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
