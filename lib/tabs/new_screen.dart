@@ -6,10 +6,11 @@ import 'package:exp_man/utilities/RadialBarChart.dart';
 import 'package:exp_man/utilities/MonthComparisonChart.dart';
 
 class inDepthVisualization extends StatelessWidget {
-  final List<Widget> charts = [RadialChart(), MyWidget(), RadialChart()];
+  const inDepthVisualization({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> charts = [RadialChart(), MyWidget(), RadialChart()];
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
