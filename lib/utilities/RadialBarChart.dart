@@ -1,5 +1,7 @@
+import 'package:exp_man/providers/student.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChartData {
   ChartData(this.category, this.amount);
@@ -16,13 +18,44 @@ class RadialChart extends StatefulWidget {
 
 class _MyWidgetState extends State<RadialChart> {
   @override
-  Widget build(BuildContext context) {
-    final List<ChartData> chartData = [
-      ChartData('LEISURE', 3500),
-      ChartData('FOOD', 7200),
-      ChartData('WORK', 10500),
-      ChartData('TRAVEL', 5000)
+  void initState() {
+    Future.delayed(Duration(seconds: 0));
+    Student student = Provider.of<Student>(context, listen: false);
+    for (var i in student.transactions) {
+      upDateChart(i);
+    }
+    chartData = GetChartData();
+    print('1');
+  }
+
+  void upDateChart(var i) {
+    print(i['category']);
+    if (i['category'] == 'Food')
+      Food += i['amount'];
+    else if (i['category'] == 'Travel')
+      Travel += i['amount'];
+    else if (i['category'] == 'Work')
+      Work += i['amount'];
+    else
+      Leisure += i['amount'];
+  }
+
+  List<ChartData> GetChartData() {
+    return [
+      ChartData('LEISURE', Leisure.toDouble()),
+      ChartData('FOOD', Food.toDouble()),
+      ChartData('WORK', Work.toDouble()),
+      ChartData('TRAVEL', Travel.toDouble())
     ];
+  }
+
+  List<ChartData> chartData = [];
+  num Leisure = 0;
+  num Food = 0;
+  num Work = 0;
+  num Travel = 0;
+  @override
+  Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
         padding: EdgeInsets.only(top: 5, left: 2, right: 2, bottom: 1),
@@ -67,7 +100,7 @@ class _MyWidgetState extends State<RadialChart> {
               dataSource: chartData,
               cornerStyle: CornerStyle.bothFlat,
               enableTooltip: true,
-              dataLabelSettings: const DataLabelSettings(),
+              dataLabelSettings: DataLabelSettings(isVisible: true),
               xValueMapper: (ChartData data, _) => data.category,
               yValueMapper: (ChartData data, _) => data.amount,
             )
