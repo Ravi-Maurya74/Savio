@@ -1,12 +1,10 @@
-import 'package:exp_man/screens/your_savings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:exp_man/utilities/RadialBarChart.dart';
+import 'package:exp_man/utilities/radialBarChart.dart';
 import 'package:exp_man/utilities/MonthComparisonChart.dart';
 
-class inDepthVisualization extends StatelessWidget {
-  const inDepthVisualization({super.key});
+class InDepthVisualization extends StatelessWidget {
+  const InDepthVisualization({super.key});
 
   @override
   Widget build(BuildContext context) {

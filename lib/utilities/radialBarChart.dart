@@ -19,25 +19,26 @@ class RadialChart extends StatefulWidget {
 class _MyWidgetState extends State<RadialChart> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 0));
+    super.initState();
+    Future.delayed(const Duration(seconds: 0));
     Student student = Provider.of<Student>(context, listen: false);
     for (var i in student.transactions) {
       upDateChart(i);
     }
     chartData = GetChartData();
-    print('1');
   }
 
   void upDateChart(var i) {
-    print(i['category']);
-    if (i['category'] == 'Food')
+    // print(i['category']);
+    if (i['category'] == 'Food') {
       Food += i['amount'];
-    else if (i['category'] == 'Travel')
+    } else if (i['category'] == 'Travel') {
       Travel += i['amount'];
-    else if (i['category'] == 'Work')
+    } else if (i['category'] == 'Work') {
       Work += i['amount'];
-    else
+    } else {
       Leisure += i['amount'];
+    }
   }
 
   List<ChartData> GetChartData() {
@@ -100,7 +101,7 @@ class _MyWidgetState extends State<RadialChart> {
               dataSource: chartData,
               cornerStyle: CornerStyle.bothFlat,
               enableTooltip: true,
-              dataLabelSettings: DataLabelSettings(isVisible: true),
+              dataLabelSettings: const DataLabelSettings(isVisible: true),
               xValueMapper: (ChartData data, _) => data.category,
               yValueMapper: (ChartData data, _) => data.amount,
             )

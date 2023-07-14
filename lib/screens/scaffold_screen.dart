@@ -92,7 +92,7 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
           children: const [
             HomeTab(),
             CommunityTab(),
-            inDepthVisualization(),
+            InDepthVisualization(),
             WishlistTab(),
             UserProfileTab(),
           ],
