@@ -68,7 +68,7 @@ class Student with ChangeNotifier {
     }
   }
 
-  void deleteTransaction(int value) async {
+  Future<void> deleteTransaction(int value) async {
     Response response = await NetworkHelper().deleteTransaction(value);
     if (response.statusCode == 204) {
       Response userData =

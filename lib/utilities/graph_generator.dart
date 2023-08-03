@@ -1,9 +1,14 @@
 import 'dart:convert';
 
+import 'package:exp_man/providers/scrollcontroller.dart';
 import 'package:exp_man/services/networking.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:http/http.dart';
+
+import '../providers/student.dart';
 
 class GraphGenerator extends StatefulWidget {
   const GraphGenerator({super.key, required this.id});
@@ -79,6 +84,22 @@ class _GraphGeneratorState extends State<GraphGenerator> {
         padding: const EdgeInsets.fromLTRB(0, 4, 2, 4),
         child: SfCartesianChart(
           primaryXAxis: DateTimeAxis(),
+          enableAxisAnimation: true,
+          tooltipBehavior: TooltipBehavior(
+            builder: (data, point, series, pointIndex, seriesIndex)  {
+              Provider.of<ScrollControllerProvider>(context,listen: false).scrollToWidget((data as _ChartData).date,Provider.of<Student>(context,listen: false).transactions);
+              return Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Text(
+                "${DateFormat("d MMM").format((data).date)}: ₹${data.expense.toString()}",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: Colors.black),
+              ),
+            );},
+            enable: true,
+          ),
           isTransposed: true,
           series: <ChartSeries>[
             BarSeries<_ChartData, DateTime>(

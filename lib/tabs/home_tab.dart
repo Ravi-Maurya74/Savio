@@ -58,7 +58,7 @@ class HomeTab extends StatelessWidget {
                 children: [
                   elongatedContainer(size, student, context),
                   CircularIconCard(
-                    alertIcon: Icon(
+                    alertIcon: const Icon(
                       Icons.credit_score,
                       color: Colors.white,
                     ),

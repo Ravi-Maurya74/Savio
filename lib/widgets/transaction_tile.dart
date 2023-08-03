@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:exp_man/providers/scrollcontroller.dart';
 import 'package:intl/intl.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:exp_man/services/networking.dart';
@@ -18,9 +19,6 @@ class TransactionTileBuilder extends StatefulWidget {
 }
 
 class _TransactionTileBuilderState extends State<TransactionTileBuilder> {
-  void newFunction(int value) {
-    return;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +26,7 @@ class _TransactionTileBuilderState extends State<TransactionTileBuilder> {
     return Expanded(
       child: AnimationLimiter(
         child: ListView.builder(
+          controller: Provider.of<ScrollControllerProvider>(context,listen: false).scrollController,
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
           shrinkWrap: true,

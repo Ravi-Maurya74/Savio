@@ -1,5 +1,6 @@
 import 'package:exp_man/providers/student.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:exp_man/widgets/custom_appbar.dart';
@@ -21,6 +22,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   final _amountController = TextEditingController();
   Category _selectedCategory = Category.leisure;
   DateTime? _selectedDate;
+  bool loading = false;
 
   void _presentDatePicker() async {
     final now = DateTime.now();
@@ -40,7 +42,11 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
     return SizedBox(
       height: double.infinity,
-      child: SingleChildScrollView(
+      child: ModalProgressHUD(
+        inAsyncCall: loading,
+        dismissible: false,
+        opacity: 0.1,
+        color: const Color(0xFF50559a),
         child: Padding(
           padding: EdgeInsets.fromLTRB(16, 48, 16, keyboardSpace),
           child: Column(
@@ -121,6 +127,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       backgroundColor: const Color.fromARGB(255, 77, 83, 163),
                     ),
                     onPressed: () async {
+                      setState(() {
+                        loading = true;
+                      });
                       bool added = await Provider.of<Student>(context,
                               listen: false)
                           .addTransaction(
@@ -128,7 +137,10 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                               amount: double.tryParse(_amountController.text),
                               date: _selectedDate,
                               category: _selectedCategory.index + 1);
-                              if (!context.mounted) return;
+                      setState(() {
+                        loading = false;
+                      });
+                      if (!context.mounted) return;
                       if (!added) {
                         showDialog(
                           context: context,

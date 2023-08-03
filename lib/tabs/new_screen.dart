@@ -8,7 +8,11 @@ class InDepthVisualization extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> charts = [RadialChart(), MyWidget(), RadialChart()];
+    final List<Widget> charts = [
+      const RadialChart(),
+      const MyWidget(),
+      const RadialChart()
+    ];
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -20,7 +24,7 @@ class InDepthVisualization extends StatelessWidget {
               child: Swiper(
                 containerWidth: size.width * 0.8,
                 containerHeight: size.height * 0.5,
-                pagination: SwiperPagination(),
+                pagination: const SwiperPagination(),
                 itemCount: 3,
                 itemBuilder: (context, index) => charts[index],
               ),
