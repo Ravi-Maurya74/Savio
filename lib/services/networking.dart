@@ -2,8 +2,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 
 class NetworkHelper {
-  static String baseUrl =
-      'http://YadoBoi.pythonanywhere.com/api/'; //'http://YadoBoi.pythonanywhere.com/api/'
+  static String baseUrl = 'http://YadoBoi.pythonanywhere.com/api/';
 
   Future<Response> getData(String url) async {
     Response response = await get(Uri.parse('$baseUrl$url'));

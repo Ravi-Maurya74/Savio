@@ -1,3 +1,5 @@
+import 'package:exp_man/auth_and_login/google_signin.dart';
+import 'package:exp_man/auth_and_login/login.dart';
 import 'package:exp_man/screens/edit_profile_screen.dart';
 import 'package:exp_man/screens/your_savings_screen.dart';
 import 'package:exp_man/utilities/profile_stack_design.dart';
@@ -37,83 +39,97 @@ class _UserProfileTabState extends State<UserProfileTab> {
           const SizedBox(
             height: 25,
           ),
-          SingleChildScrollView(
-            physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics()),
-            child: Column(
-              children: [
-                UserdetailTile(
-                  Icons.account_circle_outlined,
-                  titleDescription: 'Edit your profile name and city',
-                  trailingIcon: Icons.chevron_right_outlined,
-                  title: 'User profile',
-                  onPress: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const EditProfileScreen(
-                                title: 'Edit User Profile'))));
-                  },
-                ),
-                const Divider(
-                  thickness: 0.5,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                // UserdetailTile(
-                //   Icons.account_balance_wallet_outlined,
-                //   titleDescription: 'View your total and category budgets',
-                //   trailingIcon: Icons.chevron_right_outlined,
-                //   title: 'Budget',
-                //   onPress: () {},
-                // ),
-                // const Divider(
-                //   thickness: 0.5,
-                //   indent: 20,
-                //   endIndent: 20,
-                // ),
-                UserdetailTile(
-                  Icons.bookmark_outline,
-                  titleDescription: 'See all the saved posts from community',
-                  trailingIcon: Icons.chevron_right_outlined,
-                  title: 'Saved posts',
-                  onPress: () {},
-                ),
-                const Divider(
-                  thickness: 0.5,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                UserdetailTile(
-                  Icons.account_balance_outlined,
-                  titleDescription: 'See your monthly savings',
-                  trailingIcon: Icons.chevron_right_outlined,
-                  title: 'Savings',
-                  onPress: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const SavingsScreen())));
-                  },
-                ),
-                const Divider(
-                  thickness: 0.5,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                UserdetailTile(
-                  Icons.forum_outlined,
-                  titleDescription: 'View all your posts',
-                  trailingIcon: Icons.chevron_right_outlined,
-                  title: 'My posts',
-                  onPress: () {},
-                ),
-
-                const SizedBox(
-                  height: 150,
-                ),
-              ],
-            ),
+          Column(
+            children: [
+              UserdetailTile(
+                Icons.account_circle_outlined,
+                titleDescription: 'Edit your profile name and city',
+                trailingIcon: Icons.chevron_right_outlined,
+                title: 'User profile',
+                onPress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const EditProfileScreen(
+                              title: 'Edit User Profile'))));
+                },
+              ),
+              const Divider(
+                thickness: 0.5,
+                indent: 20,
+                endIndent: 20,
+              ),
+              // UserdetailTile(
+              //   Icons.account_balance_wallet_outlined,
+              //   titleDescription: 'View your total and category budgets',
+              //   trailingIcon: Icons.chevron_right_outlined,
+              //   title: 'Budget',
+              //   onPress: () {},
+              // ),
+              // const Divider(
+              //   thickness: 0.5,
+              //   indent: 20,
+              //   endIndent: 20,
+              // ),
+              UserdetailTile(
+                Icons.bookmark_outline,
+                titleDescription: 'See all the saved posts from community',
+                trailingIcon: Icons.chevron_right_outlined,
+                title: 'Saved posts',
+                onPress: () {},
+              ),
+              const Divider(
+                thickness: 0.5,
+                indent: 20,
+                endIndent: 20,
+              ),
+              UserdetailTile(
+                Icons.account_balance_outlined,
+                titleDescription: 'See your monthly savings',
+                trailingIcon: Icons.chevron_right_outlined,
+                title: 'Savings',
+                onPress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const SavingsScreen())));
+                },
+              ),
+              const Divider(
+                thickness: 0.5,
+                indent: 20,
+                endIndent: 20,
+              ),
+              UserdetailTile(
+                Icons.forum_outlined,
+                titleDescription: 'View all your posts',
+                trailingIcon: Icons.chevron_right_outlined,
+                title: 'My posts',
+                onPress: () {},
+              ),
+              const Divider(
+                thickness: 0.5,
+                indent: 20,
+                endIndent: 20,
+              ),
+              UserdetailTile(
+                Icons.power_settings_new,
+                titleDescription: 'Log out your profile',
+                trailingIcon: Icons.chevron_right_outlined,
+                title: 'Log Out',
+                onPress: () async {
+                  await Provider.of<GoogleSignInProvider>(context,
+                          listen: false)
+                      .googleLogout();
+                  if (!context.mounted) return;
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, LoginPage.routename, (route) => false);
+                },
+              ),
+              // const SizedBox(
+              //   height: 150,
+              // ),
+            ],
           ),
         ],
       ),

@@ -22,6 +22,9 @@ class CommunityPost with ChangeNotifier {
     if (bookmarked) {
       bookmarked = false;
       notifyListeners();
+      NetworkHelper().patchData(
+          url: 'communityPost/update/bookmark/$id',
+          jsonMap: {"student_id": studentId});
     } else {
       bookmarked = true;
       notifyListeners();
@@ -36,12 +39,16 @@ class CommunityPost with ChangeNotifier {
       liked = false;
       upvotes = upvotes - 1;
       notifyListeners();
+      NetworkHelper().patchData(
+          url: 'communityPost/update/like/$id',
+          jsonMap: {"student_id": studentId});
     } else {
       liked = true;
       upvotes = upvotes + 1;
       notifyListeners();
       NetworkHelper().patchData(
-          url: 'communityPost/update/like/$id', jsonMap: {"student_id": studentId});
+          url: 'communityPost/update/like/$id',
+          jsonMap: {"student_id": studentId});
     }
   }
 
@@ -49,6 +56,4 @@ class CommunityPost with ChangeNotifier {
       _$CommunityPostFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommunityPostToJson(this);
-
-  
 }
